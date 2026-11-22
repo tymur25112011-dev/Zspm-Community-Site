@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#090b18">
+  <meta name="description" content="Poznaj ZSPM Community — miejsce do poznawania uczniów, rozmów i szkolnych inspiracji. Zainstaluj PWA lub korzystaj w przeglądarce.">
+  <link rel="icon" href="https://raw.githubusercontent.com/tymur25112011-dev/Zspmapp/main/public/zspm-community-icon-192.png">
+  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/tymur25112011-dev/Zspmapp/main/public/zspm-community-icon-192.png">
+  <title>ZSPM Community — poznaj swoją społeczność</title>
+  <meta property="og:title" content="ZSPM Community — poznaj swoją społeczność">
+  <meta property="og:description" content="Poznawaj uczniów, rozmawiaj i miej szkolną społeczność pod ręką.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tymur25112011-dev.github.io/Zspm-Community-Site/">
+  <style>
+    :root{color-scheme:dark;--bg:#08111f;--panel:#101e32;--line:rgba(126,177,255,.2);--text:#f2f7ff;--muted:#9db1ca;--blue:#4d9dff;--blue2:#246bd6}
+    *{box-sizing:border-box}html{min-height:100%;background:var(--bg)}body{margin:0;min-height:100vh;padding:24px;color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:radial-gradient(ellipse at 10% 12%,rgba(103,99,255,.25),transparent 34rem),radial-gradient(ellipse at 90% 18%,rgba(26,190,220,.18),transparent 32rem),radial-gradient(ellipse at 52% 95%,rgba(160,91,232,.18),transparent 40rem),linear-gradient(135deg,#070b19,#10162d 50%,#090d1d)}
+    .wrap{width:min(100%,760px);margin:0 auto}.top{display:flex;align-items:center;gap:12px;padding:12px 0 34px}.top img{width:42px;height:42px;border-radius:13px}.brand{font-weight:750;letter-spacing:.1px}.brand small{display:block;color:var(--muted);font-size:11px;font-weight:500;margin-top:3px}
+    main{text-align:center;padding:clamp(24px,7vw,66px) 0 34px}.app-icon{width:104px;height:104px;border-radius:27px;box-shadow:0 18px 48px rgba(30,105,210,.3);margin-bottom:24px;animation:downloadLogoFloat 3.2s ease-in-out infinite}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--line);border-radius:99px;color:#b9d7ff;background:rgba(42,104,183,.12);font-size:12px;font-weight:650}
+    h1{font-size:clamp(32px,7vw,54px);line-height:1.06;letter-spacing:-1.8px;margin:19px 0 14px}h1 span{color:#78b7ff}
+    .lead{max-width:560px;margin:0 auto;color:var(--muted);font-size:15px;line-height:1.7}
+    .actions{display:grid;gap:12px;width:min(100%,390px);margin:30px auto 0}.btn{display:flex;justify-content:center;align-items:center;gap:10px;min-height:54px;padding:15px 20px;border-radius:15px;text-decoration:none;font-weight:750;font-size:15px;border:1px solid transparent;cursor:pointer}
+    .primary{background:linear-gradient(120deg,var(--blue),var(--blue2));color:white;box-shadow:0 12px 28px rgba(36,107,214,.25)}.secondary{background:rgba(18,34,55,.75);border-color:var(--line);color:#dceaff}
+    .hint{min-height:42px;margin:15px auto 0;color:var(--muted);font-size:12px;line-height:1.6;max-width:440px}
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:42px 0 0;text-align:left}.feature{padding:18px 16px;border:1px solid var(--line);border-radius:17px;background:rgba(16,30,50,.72)}.feature b{display:block;font-size:14px;margin:9px 0 5px}.feature p{margin:0;color:var(--muted);font-size:12px;line-height:1.55}.ico{font-size:22px}
+    .steps{margin:18px 0 0;padding:19px 21px;border:1px solid var(--line);border-radius:17px;background:rgba(16,30,50,.55);text-align:left}.steps h2{font-size:15px;margin:0 0 10px}.steps p{font-size:12px;line-height:1.65;color:var(--muted);margin:6px 0}
+    footer{text-align:center;color:#7187a2;font-size:11px;padding:28px 0 12px}
+    @media(max-width:560px){body{padding:17px}.features{grid-template-columns:1fr}.feature{display:flex;gap:13px;align-items:flex-start}.feature b{margin:1px 0 4px}.feature .ico{min-width:25px}main{padding-top:28px}.app-icon{width:90px;height:90px}}
+    @keyframes downloadLogoFloat{0%,100%{transform:translateY(0);box-shadow:0 18px 48px rgba(30,105,210,.3)}50%{transform:translateY(-7px);box-shadow:0 25px 58px rgba(30,105,210,.42)}}\n    @media(prefers-reduced-motion:reduce){.app-icon{animation:none}}\n    @media(prefers-reduced-motion:no-preference){.primary{transition:transform .18s,filter .18s}.primary:active{transform:scale(.98)}}
+    body{position:relative;isolation:isolate;background-attachment:fixed}
+    body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.85;background:radial-gradient(ellipse at 22% 34%,rgba(86,119,255,.17),transparent 28rem),radial-gradient(ellipse at 82% 72%,rgba(45,210,218,.13),transparent 30rem),repeating-linear-gradient(135deg,rgba(255,255,255,.028) 0 1px,transparent 1px 66px)}
+
+  
+    .showcase{position:relative;isolation:isolate;overflow:hidden;min-height:430px;margin:2px calc(50% - 50vw) 28px;padding:36px max(24px,calc((100vw - 980px)/2)) 0;background:radial-gradient(ellipse at 50% 100%,rgba(37,99,235,.22),transparent 48%),linear-gradient(145deg,#050914 0%,#0a1425 55%,#07101d 100%);border-top:1px solid rgba(133,180,255,.1);border-bottom:1px solid rgba(133,180,255,.12)}
+    .showcase:before,.showcase:after{content:"";position:absolute;z-index:-1;border:1px solid rgba(96,165,250,.12);border-radius:50%;width:420px;height:420px;pointer-events:none}
+    .showcase:before{left:-210px;top:70px}.showcase:after{right:-230px;top:-220px;width:560px;height:560px}
+    .showcase-inner{width:min(100%,980px);min-height:390px;margin:auto;display:grid;grid-template-columns:.86fr 1.14fr;align-items:center;gap:16px}
+    .showcase-copy{position:relative;z-index:3;padding:8px 0 42px}
+    .showcase-brand{display:flex;align-items:center;gap:11px;font-size:clamp(27px,4vw,42px);font-weight:850;letter-spacing:-1.8px;color:#f7fbff}
+    .showcase-brand img{width:48px;height:48px;border-radius:14px;box-shadow:0 8px 24px #2563eb55}
+    .showcase-brand span{color:#60a5fa}
+    .showcase-tag{margin-top:23px;color:#8dbfff;font-size:11px;letter-spacing:2.2px;font-weight:800;text-transform:uppercase}
+    .showcase-copy h2{margin:10px 0 12px;font-size:clamp(29px,4vw,46px);line-height:1.04;letter-spacing:-1.7px;color:#fff}
+    .showcase-copy h2 span{color:#70b4ff}
+    .showcase-copy p{max-width:340px;margin:0;color:#9fb1cb;font-size:14px;line-height:1.65}
+    .showcase-points{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+    .showcase-points span{padding:7px 10px;border:1px solid #8abaff30;border-radius:99px;background:#13264288;color:#c8ddfa;font-size:11px}
+    .device-stage{position:relative;min-height:390px;perspective:1000px;overflow:visible}
+    .device{position:absolute;width:218px;height:390px;padding:8px;border:1px solid #65758b;border-radius:32px;background:linear-gradient(145deg,#354052,#090d16 28%,#1b2638 72%,#080b12);box-shadow:0 28px 65px #000b,0 0 0 2px #03060b;overflow:hidden}
+    .device:before{content:"";position:absolute;z-index:4;top:8px;left:50%;transform:translateX(-50%);width:64px;height:14px;border-radius:0 0 11px 11px;background:#05080e}
+    .device-one{left:8%;top:26px;transform:rotate(-8deg);animation:phoneFloatA 6s ease-in-out infinite}
+    .device-two{right:5%;top:-8px;transform:rotate(8deg);animation:phoneFloatB 6.8s ease-in-out infinite}
+    .screen{height:100%;overflow:hidden;border-radius:25px;padding:27px 12px 12px;background:linear-gradient(160deg,#101b2e,#080e19 75%);color:#f5f8ff}
+    .screen-status{display:flex;justify-content:space-between;font-size:8px;color:#a9bbd2;margin:0 3px 17px}
+    .screen-brand{display:flex;align-items:center;gap:6px;font-weight:850;font-size:14px;letter-spacing:-.4px;margin-bottom:17px}
+    .screen-brand img{width:22px;height:22px;border-radius:7px}
+    .screen-title{font-size:17px;font-weight:850;line-height:1.12;margin:5px 0 5px}
+    .screen-sub{font-size:8px;color:#9badc6;margin-bottom:13px}
+    .mini-card{padding:10px;border:1px solid #304665;border-radius:12px;background:linear-gradient(130deg,#172b47,#101b2d);margin:8px 0}
+    .mini-label{font-size:7px;color:#8dbfff;text-transform:uppercase;letter-spacing:1px;font-weight:800}
+    .mini-row{display:flex;align-items:center;gap:8px;margin-top:8px}
+    .avatar-dot{width:29px;height:29px;display:grid;place-items:center;border-radius:10px;background:#274c79;font-size:15px}
+    .mini-name{font-size:9px;font-weight:800}.mini-muted{font-size:7px;color:#92a7c2;margin-top:3px}
+    .mini-action{margin-left:auto;padding:5px 8px;border-radius:7px;background:#2879dc;color:white;font-size:7px;font-weight:800}
+    .mini-tabs{display:flex;gap:5px;margin:12px 0}.mini-tabs i{font-style:normal;padding:6px 7px;border-radius:7px;background:#1b2c44;color:#9eb6d4;font-size:7px}.mini-tabs i:first-child{background:#246cc2;color:white}
+    .idea{padding:9px;border-radius:10px;background:#121f33;border:1px solid #263b58;margin:7px 0}
+    .idea strong{display:block;font-size:8px;margin-bottom:5px}.idea p{font-size:7px;line-height:1.45;color:#9db1cb;margin:0}
+    .idea-foot{display:flex;justify-content:space-between;margin-top:8px;color:#70b4ff;font-size:7px}
+    .chat-bubble{max-width:85%;padding:8px 9px;border-radius:10px;background:#1b2d47;color:#dceaff;font-size:7px;line-height:1.45;margin:9px 0}
+    .chat-bubble.right{margin-left:auto;background:#236ac0;color:white}
+    .screen-nav{position:absolute;bottom:12px;left:18px;right:18px;display:flex;justify-content:space-around;padding:9px 4px;border-radius:13px;background:#0c1728;border:1px solid #273a55;color:#8fb5e5;font-size:10px}
+    @keyframes phoneFloatA{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-11px) rotate(-6deg)}}
+    @keyframes phoneFloatB{0%,100%{transform:translateY(0) rotate(8deg)}50%{transform:translateY(12px) rotate(6deg)}}
+    @media(max-width:650px){.showcase{min-height:570px;padding:30px 18px 0;margin-top:0}.showcase-inner{grid-template-columns:1fr;gap:0;min-height:540px}.showcase-copy{text-align:center;padding:4px 0 0}.showcase-brand{justify-content:center;font-size:30px}.showcase-copy p{margin:0 auto;font-size:12px}.showcase-tag{margin-top:13px}.showcase-copy h2{font-size:34px;margin:8px 0}.showcase-points{justify-content:center;margin-top:12px}.device-stage{min-height:290px;margin:2px -12px 0;transform:scale(.83);transform-origin:top center}.device{width:190px;height:340px}.device-one{left:8%;top:12px}.device-two{right:8%;top:-5px}}
+    @media(max-width:390px){.showcase{min-height:535px}.showcase-inner{min-height:510px}.showcase-copy h2{font-size:30px}.device-stage{transform:scale(.73);min-height:260px}.showcase-points span{font-size:10px}}
+    @media(prefers-reduced-motion:reduce){.device-one,.device-two{animation:none}}
+
+
+    /* Official school gryf styled to match the app's blue glass emblem. */
+    .top img,.showcase-brand img,.screen-brand img,.app-icon,.install-dialog-icon img{
+      display:block;
+      object-fit:contain;
+      mix-blend-mode:screen;
+      filter:invert(1) sepia(1) saturate(4.2) hue-rotate(164deg) brightness(1.12)
+        drop-shadow(0 0 11px rgba(65,205,255,.5));
+    }
+    .top img,.showcase-brand img,.screen-brand img{
+      padding:4px;
+      border:1px solid rgba(76,205,255,.58);
+      border-radius:14px;
+      background:linear-gradient(145deg,rgba(11,55,83,.8),rgba(17,35,65,.78));
+      box-shadow:0 0 18px rgba(28,174,255,.2);
+    }
+    .app-icon{
+      padding:9px;
+      border:1px solid rgba(76,205,255,.58);
+      border-radius:25px;
+      background:linear-gradient(145deg,rgba(11,55,83,.8),rgba(17,35,65,.78));
+      box-shadow:0 0 28px rgba(28,174,255,.28),0 18px 48px rgba(30,105,210,.3);
+    }
+    .install-dialog-icon{
+      background:linear-gradient(145deg,rgba(11,55,83,.8),rgba(17,35,65,.78));
+      border-color:rgba(76,205,255,.58);
+    }
+
+    .install-overlay{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:18px;background:rgba(2,8,18,.78);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);animation:installFade .2s ease}
+    .install-overlay[hidden]{display:none}
+    .install-dialog{position:relative;width:min(100%,390px);padding:30px 24px 22px;text-align:center;border:1px solid rgba(111,177,255,.32);border-radius:28px;background:radial-gradient(ellipse at 50% 0,rgba(34,120,220,.25),transparent 55%),linear-gradient(155deg,#132943,#0a1628 72%);box-shadow:0 28px 90px rgba(0,0,0,.58),0 0 42px rgba(24,116,224,.16);animation:installRise .28s cubic-bezier(.2,.8,.2,1)}
+    .install-close{position:absolute;top:13px;right:14px;width:34px;height:34px;border:1px solid rgba(150,190,235,.18);border-radius:11px;background:rgba(255,255,255,.06);color:#c9dcf5;font-size:23px;line-height:1;cursor:pointer}
+    .install-dialog-icon{width:88px;height:88px;margin:0 auto 15px;padding:5px;border:1px solid rgba(107,180,255,.4);border-radius:25px;background:linear-gradient(145deg,rgba(31,105,181,.3),rgba(5,17,32,.8));box-shadow:0 12px 32px rgba(0,105,255,.2)}
+    .install-dialog-icon img{width:100%;height:100%;object-fit:contain}
+    .install-dialog-tag{font-size:10px;letter-spacing:2.5px;font-weight:850;color:#76baff}
+    .install-dialog h2{margin:10px 0 9px;font-size:25px;letter-spacing:-.7px;color:#f4f8ff}
+    .install-dialog-copy{max-width:300px;margin:0 auto;color:#a9bdd7;font-size:13px;line-height:1.65}
+    .install-benefits{display:grid;gap:11px;margin:22px 0;padding:16px;border:1px solid rgba(117,169,230,.15);border-radius:17px;background:rgba(3,13,26,.38);text-align:left}
+    .install-benefits span{display:flex;gap:10px;align-items:center;color:#dceaff;font-size:12px}
+    .install-benefits b{color:#67b2ff;font-size:16px}
+    .install-confirm{width:100%;justify-content:center;box-shadow:0 12px 30px rgba(26,111,221,.28)}
+    .install-confirm span{font-size:18px;margin-left:4px}
+    .install-later{margin:13px auto 0;border:0;background:none;color:#90a8c6;font-size:12px;padding:8px 14px;cursor:pointer}
+    .install-dialog-note{margin:12px 0 0;color:#7189a8;font-size:10px;line-height:1.5}
+    @keyframes installFade{from{opacity:0}to{opacity:1}}
+    @keyframes installRise{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+    @media(prefers-reduced-motion:reduce){.install-overlay,.install-dialog{animation:none}}
+
+
+    /* Match every download-page crest to the exact approved in-app hero treatment. */
+    img[src*="337741"]{
+      display:block !important;
+      object-fit:contain !important;
+      padding:6px !important;
+      border:1px solid rgba(76,205,255,.62) !important;
+      border-radius:22px !important;
+      background:linear-gradient(145deg,rgba(11,55,83,.94),rgba(17,35,65,.96)) !important;
+      mix-blend-mode:screen !important;
+      filter:invert(1) sepia(1) saturate(4.2) hue-rotate(164deg) brightness(1.12)
+        drop-shadow(0 0 11px rgba(65,205,255,.5)) !important;
+      box-shadow:0 0 20px rgba(28,174,255,.24),0 8px 26px rgba(0,0,0,.22) !important;
+    }
+
+    /* Refined download landing page — premium, spacious and mobile-first */
+    :root{--bg:#07111f;--panel:#0e1d31;--line:rgba(137,180,231,.17);--muted:#9db1ca;--blue:#65adff;--blue2:#286fd1}
+    body{padding:22px clamp(16px,3vw,34px);background:radial-gradient(ellipse at 50% -12%,rgba(43,119,213,.28),transparent 42rem),radial-gradient(ellipse at 95% 50%,rgba(21,83,147,.11),transparent 32rem),linear-gradient(155deg,#07111f,#0a1729 58%,#060e19)}
+    .wrap{width:min(100%,1040px)}
+    .top{justify-content:space-between;padding:12px 0 22px;border-bottom:1px solid rgba(137,180,231,.1)}
+    .top-brand{display:flex;align-items:center;gap:12px;color:inherit;text-decoration:none}
+    .top-nav{display:flex;align-items:center;gap:7px}
+    .top-nav a{padding:9px 12px;border:1px solid transparent;border-radius:999px;color:#a9bfd9;text-decoration:none;font-size:12px;font-weight:650;transition:background .18s,border-color .18s,color .18s}
+    .top-nav a:hover{color:#fff;border-color:var(--line);background:rgba(72,130,199,.1)}
+    .top img{width:42px;height:42px}
+    .showcase{min-height:445px;margin-top:18px;border:1px solid rgba(133,180,255,.12);border-radius:28px;padding-top:20px;background:radial-gradient(ellipse at 72% 52%,rgba(31,107,194,.17),transparent 42%),radial-gradient(ellipse at 12% 0,rgba(37,99,180,.12),transparent 44%),linear-gradient(145deg,#081322,#0a1729 58%,#07111f)}
+    .showcase-inner{min-height:405px;grid-template-columns:.92fr 1.08fr;gap:24px;padding:0 28px}
+    .showcase-copy{padding-bottom:30px}
+    .showcase-copy h2{font-size:clamp(34px,4.7vw,53px);line-height:1.02;letter-spacing:-2px}
+    .showcase-copy p{font-size:14px;line-height:1.8}
+    .showcase-points span{border-color:rgba(138,185,244,.2);background:rgba(19,43,72,.6);padding:8px 12px}
+    .device-stage{transform:scale(.98);transform-origin:center}
+    .device{box-shadow:0 30px 75px rgba(0,0,0,.48),0 0 0 1px rgba(138,185,244,.12)}
+    main{text-align:left;padding:54px 0 24px}
+    main>.app-icon,main>.eyebrow,main>h1,main>.lead{display:block;margin-left:auto;margin-right:auto;text-align:center}
+    main>.app-icon{margin-bottom:19px}
+    main>.eyebrow{width:max-content;max-width:100%;margin-bottom:0}
+    main>h1{font-size:clamp(34px,6vw,52px);margin-top:17px}
+    main>.lead{max-width:650px;font-size:15px}
+    .actions{grid-template-columns:1fr 1fr;width:min(100%,500px);margin-top:27px}
+    .btn{min-height:58px;border-radius:16px}
+    .primary{background:linear-gradient(120deg,#4da4ff,#2868ce);box-shadow:0 14px 35px rgba(36,107,214,.25)}
+    .secondary{background:rgba(18,34,55,.65);border-color:rgba(137,180,231,.25)}
+    .hint{text-align:center}
+    .features{grid-template-columns:repeat(3,1fr);gap:14px;margin:38px 0 0}
+    .feature{min-height:142px;padding:20px;border-radius:19px;background:linear-gradient(150deg,rgba(18,37,61,.92),rgba(10,24,41,.82));transition:transform .2s,border-color .2s}
+    .feature:hover,.detail-card:hover{transform:translateY(-3px);border-color:rgba(101,173,255,.38)}
+    .feature .ico{display:grid;place-items:center;width:42px;height:42px;border:1px solid rgba(101,173,255,.19);border-radius:14px;background:rgba(45,112,188,.14)}
+    .feature b{font-size:14px;margin:13px 0 7px}
+    .feature p{font-size:12px}
+    .details-section,.install-section,.faq-section{margin-top:76px}
+    .section-heading{max-width:660px;margin:0 auto 25px;text-align:center}
+    .section-kicker{color:#83bdff;font-size:10px;font-weight:850;letter-spacing:2.1px}
+    .section-heading h2,.install-copy h2{margin:10px 0 12px;color:#f5f8ff;font-size:clamp(27px,4.5vw,40px);line-height:1.08;letter-spacing:-1.3px}
+    .section-heading h2 span,.install-copy h2 span{color:#76b7ff}
+    .section-heading p,.install-copy>p{max-width:630px;margin:0 auto;color:var(--muted);font-size:13px;line-height:1.8}
+    .detail-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+    .detail-card{min-height:220px;padding:20px 17px;border:1px solid var(--line);border-radius:19px;background:linear-gradient(155deg,rgba(17,35,58,.92),rgba(10,22,38,.82));transition:transform .2s,border-color .2s}
+    .detail-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:14px;background:rgba(48,117,196,.15);border:1px solid rgba(101,173,255,.2);color:#83bdff;font-size:21px}
+    .detail-number{margin-top:18px;color:#79b7fa;font-size:9px;font-weight:850;letter-spacing:1.5px}
+    .detail-card h3{margin-top:7px;color:#f1f6ff;font-size:15px;line-height:1.3}
+    .detail-card p{margin-top:9px;color:#9db1ca;font-size:11px;line-height:1.65}
+    .install-section{display:grid;grid-template-columns:.85fr 1.15fr;gap:34px;align-items:center;padding:30px;border:1px solid var(--line);border-radius:25px;background:radial-gradient(ellipse at 0 0,rgba(42,112,190,.16),transparent 55%),linear-gradient(145deg,rgba(16,34,56,.9),rgba(8,20,35,.92))}
+    .install-copy h2{font-size:clamp(27px,3.7vw,37px)}
+    .install-copy>p{font-size:12px}
+    .install-timeline{display:grid;gap:17px;list-style:none}
+    .install-timeline li{display:flex;gap:13px;align-items:flex-start}
+    .install-timeline li>span{display:grid;place-items:center;flex:0 0 32px;width:32px;height:32px;border:1px solid rgba(101,173,255,.35);border-radius:11px;background:rgba(43,111,190,.18);color:#9acaff;font-size:13px;font-weight:850}
+    .install-timeline b{color:#eef5ff;font-size:13px}
+    .install-timeline p{margin-top:4px;color:#9db1ca;font-size:11px;line-height:1.6}
+    .privacy-panel{display:flex;gap:16px;align-items:flex-start;margin-top:24px;padding:22px;border:1px solid rgba(92,157,222,.2);border-radius:19px;background:rgba(26,72,116,.13)}
+    .privacy-symbol{display:grid;place-items:center;flex:0 0 40px;width:40px;height:40px;border-radius:13px;background:rgba(50,126,199,.17);color:#88c2ff;font-size:23px}
+    .privacy-panel h2{color:#eff6ff;font-size:14px}
+    .privacy-panel p{margin-top:6px;color:#9db1ca;font-size:11px;line-height:1.7}
+    .faq-section{max-width:780px;margin-left:auto;margin-right:auto}
+    .faq-section .section-heading{margin-bottom:20px}
+    .faq-item{margin:9px 0;border:1px solid var(--line);border-radius:15px;background:rgba(15,30,49,.72);overflow:hidden}
+    .faq-item summary{position:relative;padding:16px 44px 16px 17px;color:#eaf3ff;font-size:13px;font-weight:750;cursor:pointer;list-style:none}
+    .faq-item summary::-webkit-details-marker{display:none}
+    .faq-item summary:after{content:"+";position:absolute;right:17px;top:12px;color:#82bdff;font-size:22px;font-weight:400}
+    .faq-item[open] summary:after{content:"−"}
+    .faq-item p{padding:0 17px 16px;color:#9db1ca;font-size:12px;line-height:1.7}
+    .steps{margin-top:20px}
+    footer{margin-top:34px;border-top:1px solid rgba(137,180,231,.1);padding:25px 0 12px}
+    /* Use the approved crest cleanly, without the oversized badge ring. */
+    img[src*="337741"]{padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;filter:invert(1) sepia(1) saturate(4.2) hue-rotate(164deg) brightness(1.12) drop-shadow(0 0 7px rgba(65,205,255,.32))!important}
+    .showcase-brand img{width:48px;height:48px}
+    .screen-brand img{width:22px;height:22px}
+    .top img{width:42px;height:42px}
+    .app-icon{width:104px;height:104px;border-radius:0}
+    @media(max-width:760px){
+      .top-nav{gap:2px}.top-nav a{padding:8px 9px;font-size:11px}
+      .showcase{min-height:560px;padding:26px 12px 0}.showcase-inner{grid-template-columns:1fr;min-height:535px;gap:0;padding:0 8px}
+      .showcase-copy{padding:4px 0 0}.device-stage{min-height:300px;transform:scale(.84);transform-origin:top center}
+      .detail-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .install-section{grid-template-columns:1fr;gap:24px;padding:23px}
+      .install-copy{text-align:center}.install-copy>p{margin-left:auto;margin-right:auto}
+    }
+    @media(max-width:560px){
+      body{padding:13px}
+      .top{align-items:flex-start;gap:8px;padding:8px 0 15px}
+      .top-brand{gap:8px}.top img{width:35px;height:35px}.brand{font-size:14px}.brand small{font-size:10px}
+      .top-nav{flex-wrap:wrap;justify-content:flex-end;max-width:52%}.top-nav a{font-size:10px;padding:7px 8px}
+      .showcase{margin-top:13px;min-height:535px;border-radius:22px;padding-left:8px;padding-right:8px}
+      .showcase-inner{min-height:505px}.showcase-copy h2{font-size:34px}.showcase-copy p{font-size:12px}
+      .device-stage{transform:scale(.76);min-height:270px}
+      main{padding-top:42px}.actions{grid-template-columns:1fr;width:min(100%,390px)}
+      .features{grid-template-columns:1fr;gap:9px;margin-top:28px}
+      .feature{min-height:0;display:flex;gap:13px;align-items:flex-start;padding:15px}
+      .feature b{margin:1px 0 5px}.feature .ico{flex:0 0 42px}
+      .details-section,.install-section,.faq-section{margin-top:54px}
+      .detail-grid{grid-template-columns:1fr;gap:9px}
+      .detail-card{min-height:0;padding:17px}.detail-number{margin-top:12px}
+      .install-section{padding:18px;border-radius:20px}
+      .privacy-panel{padding:16px;gap:11px}
+    }
+    @media(max-width:370px){
+      .top{flex-direction:column}.top-nav{max-width:100%;justify-content:flex-start}
+      .showcase-copy h2{font-size:30px}.device-stage{transform:scale(.68);min-height:240px}
+    }
+    .legal-links{margin-top:70px;padding:34px 0 4px;border-top:1px solid rgba(137,180,231,.12)}
+    .legal-link-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .legal-link-card{display:flex;align-items:center;gap:12px;min-height:94px;padding:17px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,rgba(18,39,64,.94),rgba(9,23,40,.9));color:#eef5ff;text-decoration:none;transition:transform .2s,border-color .2s}
+    .legal-link-card:hover{transform:translateY(-3px);border-color:rgba(101,173,255,.42)}
+    .legal-link-card>span{display:grid;place-items:center;flex:0 0 40px;height:40px;border:1px solid rgba(101,173,255,.22);border-radius:13px;background:rgba(45,112,188,.16);color:#8dc4ff;font-size:20px}
+    .legal-link-card div{min-width:0;flex:1}.legal-link-card b{display:block;font-size:12px}.legal-link-card small{display:block;margin-top:5px;color:#9db1ca;font-size:10px;line-height:1.45}.legal-link-card i{font-style:normal;color:#82bdff}
+    .faq-item a,footer a{color:#8fc4ff;text-decoration:none}.faq-item a:hover,footer a:hover{text-decoration:underline}
+    /* More convincing premium smartphone hardware around the app preview. */
+    .device{width:224px;height:402px;padding:7px;border:1px solid #9aa8bc;border-radius:35px;background:linear-gradient(135deg,#7d8797 0%,#303a4a 10%,#080c14 26%,#202b3b 76%,#657286 100%);box-shadow:0 34px 80px #000c,0 0 0 2px #05080e, inset 0 0 0 1px #d5dfef35}
+    .device:before{top:9px;width:72px;height:17px;border-radius:0 0 13px 13px;background:linear-gradient(#02050a,#111a28);box-shadow:0 1px 0 #ffffff18}
+    .device:after{content:"";position:absolute;z-index:5;top:14px;left:calc(50% + 24px);width:5px;height:5px;border-radius:50%;background:#152d4c;box-shadow:0 0 0 1px #28394d,0 0 5px #2467b4}
+    .device-one:after{left:calc(50% + 24px)}.device-two:after{left:calc(50% + 24px)}
+    .device .screen{border:1px solid #000;border-radius:28px;background:linear-gradient(160deg,#111e31,#080e19 75%);box-shadow:inset 0 0 0 1px #ffffff08}
+    .device-one:before,.device-two:before{width:72px}
+    @media(max-width:560px){.legal-link-grid{grid-template-columns:1fr}.legal-links{margin-top:54px}}
+    @media(prefers-reduced-motion:reduce){
+      .feature,.detail-card,.top-nav a,.primary{transition:none!important}
+      .feature:hover,.detail-card:hover{transform:none}
+    }
+
+
+    .screen.screen-photo{padding:0;background:#050b14;overflow:hidden}
+    .screen-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:top center;border-radius:25px}
+    .screenshot-gallery{margin:68px 0 0}
+    .screenshot-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .screenshot-card{overflow:hidden;padding:8px;border:1px solid rgba(137,180,231,.18);border-radius:18px;background:linear-gradient(145deg,rgba(18,39,64,.92),rgba(9,23,40,.88));box-shadow:0 16px 36px rgba(0,0,0,.16)}
+    .screenshot-card img{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;object-position:top;border-radius:12px;background:#08111f}
+    .screenshot-card figcaption{padding:10px 5px 4px;color:#a9bfd9;font-size:11px;text-align:center}
+    @media(max-width:650px){.screenshot-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.screenshot-gallery{margin-top:52px}}
+
+  
+    /* Cinematic screenshot carousel with a frosted-glass caption fade. */
+    .app-carousel{max-width:780px;margin:0 auto}
+    .carousel-viewport{position:relative;overflow:hidden;min-height:280px;border:1px solid rgba(137,180,231,.2);border-radius:26px;background:#050b14;box-shadow:0 28px 75px rgba(0,0,0,.34),0 0 50px rgba(45,125,220,.1);touch-action:pan-y}
+    .carousel-slide{position:absolute;inset:0;margin:0;opacity:0;visibility:hidden;transform:scale(1.025);transition:opacity .75s ease,transform 1.2s ease,visibility .75s}
+    .carousel-slide.is-active{position:relative;opacity:1;visibility:visible;transform:scale(1)}
+    .carousel-slide img{display:block;width:100%;height:clamp(420px,66vw,690px);object-fit:contain;object-position:center top;background:#050b14}
+    .carousel-slide figcaption{position:absolute;z-index:2;left:0;right:0;bottom:0;display:flex;flex-direction:column;gap:5px;padding:76px clamp(20px,4vw,38px) 25px;color:#fff;background:linear-gradient(180deg,transparent 0%,rgba(4,10,20,.38) 20%,rgba(4,10,20,.83) 52%,rgba(4,10,20,.94) 100%);backdrop-filter:blur(0);-webkit-backdrop-filter:blur(0)}
+    .carousel-slide figcaption:before{content:"";position:absolute;inset:25px 0 0;z-index:-1;background:rgba(7,16,31,.16);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);mask-image:linear-gradient(to bottom,transparent,black 38%);-webkit-mask-image:linear-gradient(to bottom,transparent,black 38%)}
+    .carousel-slide figcaption span{color:#ffd45f;font-size:10px;font-weight:850;letter-spacing:2px}
+    .carousel-slide figcaption b{font-size:clamp(19px,3vw,26px);letter-spacing:-.5px}
+    .carousel-slide figcaption small{max-width:500px;color:#d3dfef;font-size:12px;line-height:1.6}
+    .carousel-arrow{position:absolute;z-index:4;top:50%;display:grid;place-items:center;width:43px;height:43px;border:1px solid rgba(255,255,255,.28);border-radius:50%;background:rgba(7,17,31,.48);color:#fff;font-size:30px;line-height:1;cursor:pointer;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:background .2s,transform .2s}
+    .carousel-arrow:hover{background:rgba(33,103,184,.78);transform:scale(1.06)}
+    .carousel-prev{left:15px}.carousel-next{right:15px}
+    .carousel-controls{display:flex;flex-direction:column;align-items:center;gap:12px;padding:19px 8px 0}
+    .carousel-dots{display:flex;justify-content:center;gap:9px}
+    .carousel-dot{width:8px;height:8px;padding:0;border:0;border-radius:99px;background:#536984;cursor:pointer;transition:width .25s,background .25s}
+    .carousel-dot.is-active{width:27px;background:#ffd45f}
+    .carousel-hint{color:#8298b5;font-size:10px;letter-spacing:.3px}
+    .contact-email{color:#79c8ff!important;font-weight:800;text-decoration:none;border-bottom:1px solid rgba(121,200,255,.45)}
+    .contact-email:hover{color:#b6e5ff!important;border-color:#b6e5ff}
+    @media(max-width:560px){.carousel-viewport{border-radius:20px}.carousel-slide img{height:min(128vw,590px)}.carousel-slide figcaption{padding:62px 18px 19px}.carousel-arrow{width:37px;height:37px;font-size:26px}.carousel-prev{left:9px}.carousel-next{right:9px}.carousel-dots{gap:7px}}
+    @media(prefers-reduced-motion:reduce){.carousel-slide,.carousel-arrow,.carousel-dot{transition:none!important}.carousel-slide{transform:none}}
+
+  
+    body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.7;background:radial-gradient(ellipse at 24% 38%,rgba(91,105,255,.12),transparent 30rem),radial-gradient(ellipse at 78% 72%,rgba(30,190,220,.10),transparent 32rem),repeating-linear-gradient(135deg,rgba(255,255,255,.025) 0 1px,transparent 1px 68px)}
+    .wrap{position:relative;z-index:1}
+
+    /* ZSPM Community — unified app visual system */
+    :root {
+      color-scheme: dark;
+      --bg:#090b18;
+      --panel:rgba(20,23,43,.88);
+      --panel-strong:#171b32;
+      --line:rgba(167,139,250,.20);
+      --text:#f5f3ff;
+      --muted:#a9abc7;
+      --accent:#9b7cf6;
+      --accent-2:#704fe0;
+      --blue:#59a8ff;
+      --shadow:0 18px 55px rgba(0,0,0,.28);
+    }
+    html { background:var(--bg); scroll-behavior:smooth; }
+    body {
+      color:var(--text);
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(ellipse at 12% 0%,rgba(124,92,231,.22),transparent 36rem),
+        radial-gradient(ellipse at 92% 18%,rgba(65,92,180,.16),transparent 34rem),
+        linear-gradient(160deg,#0b0d1c 0%,#101329 52%,#0a0c19 100%);
+      background-attachment:fixed;
+    }
+    body::before {
+      opacity:.38;
+      background:radial-gradient(ellipse at 22% 34%,rgba(124,92,231,.16),transparent 28rem),
+        radial-gradient(ellipse at 82% 72%,rgba(65,145,255,.10),transparent 30rem),
+        repeating-linear-gradient(135deg,rgba(255,255,255,.018) 0 1px,transparent 1px 72px);
+    }
+    a { color:#c4b5fd; }
+    a:focus-visible,button:focus-visible,summary:focus-visible { outline:2px solid #c4b5fd;outline-offset:4px; }
+    .wrap { width:min(100%,1120px); }
+    .top {
+      position:sticky;top:12px;z-index:20;
+      width:100%;margin:10px auto 22px;padding:11px 16px;
+      border:1px solid var(--line);border-radius:19px;
+      background:rgba(15,18,36,.76);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+      box-shadow:0 12px 36px rgba(0,0,0,.22);
+    }
+    .top-brand img { border-radius:13px;box-shadow:0 8px 24px rgba(139,92,246,.24); }
+    .brand { color:var(--text);font-size:15px;letter-spacing:-.25px; }
+    .brand small { color:var(--muted); }
+    .top-nav { gap:6px; }
+    .top-nav a { padding:9px 12px;border-radius:11px;color:#c4c5df;font-size:12px;transition:background .18s,color .18s; }
+    .top-nav a:hover { background:rgba(155,124,246,.13);color:#fff; }
+    .showcase {
+      min-height:470px;margin:0 calc(50% - 50vw) 44px;padding:35px max(24px,calc((100vw - 1080px)/2)) 12px;
+      border:1px solid rgba(167,139,250,.14);border-left:0;border-right:0;border-radius:0;
+      background:
+        radial-gradient(ellipse at 72% 50%,rgba(112,79,224,.22),transparent 34rem),
+        linear-gradient(120deg,rgba(24,26,54,.96),rgba(13,17,36,.98) 62%,rgba(18,26,53,.96));
+      box-shadow:inset 0 1px rgba(255,255,255,.035),0 24px 70px rgba(0,0,0,.18);
+    }
+    .showcase-inner { width:min(100%,1080px);min-height:420px;gap:28px; }
+    .showcase-brand { font-size:clamp(25px,3.6vw,39px);letter-spacing:-1.5px; }
+    .showcase-brand img { border-radius:15px;box-shadow:0 10px 28px rgba(139,92,246,.3); }
+    .showcase-tag { color:#c4b5fd;letter-spacing:1.8px; }
+    .showcase-copy h2 { font-size:clamp(34px,5vw,54px);letter-spacing:-2px; }
+    .showcase-copy h2 span,.showcase-brand span { color:#a995ff; }
+    .showcase-copy p { color:#b8bad4;line-height:1.75; }
+    .showcase-points span { border-color:rgba(167,139,250,.22);background:rgba(139,92,246,.10);color:#ddd6fe; }
+    .device-stage { min-height:410px; }
+    .device { border-color:rgba(196,181,253,.42);box-shadow:0 30px 75px rgba(0,0,0,.56),0 0 0 1px rgba(167,139,250,.08); }
+    main { padding:8px 0 40px; }
+    .app-icon { border-radius:27px;box-shadow:0 18px 48px rgba(112,79,224,.32); }
+    .eyebrow,.section-kicker {
+      border-color:rgba(167,139,250,.24);color:#d5caff;background:rgba(139,92,246,.11);
+    }
+    h1 { color:var(--text);letter-spacing:-2px; }
+    h1 span { color:#a995ff; }
+    .lead { color:var(--muted); }
+    .actions { gap:11px; }
+    .btn { min-height:54px;border-radius:15px;transition:transform .18s,filter .18s,box-shadow .18s; }
+    .btn:hover { transform:translateY(-2px);filter:brightness(1.07); }
+    .primary { background:linear-gradient(120deg,#9b7cf6,#704fe0);box-shadow:0 10px 28px rgba(112,79,224,.28); }
+    .secondary { color:#e4e1ff;background:rgba(25,29,55,.78);border-color:var(--line); }
+    .hint { color:var(--muted); }
+    .feature,.detail-card,.steps,.install-section,.privacy-panel,.legal-link-card,.faq-item {
+      background:linear-gradient(155deg,rgba(26,29,54,.94),rgba(17,20,39,.94));
+      border:1px solid var(--line);box-shadow:var(--shadow);
+      backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    }
+    .feature { border-radius:19px;padding:20px 18px; }
+    .feature b,.detail-card h3,.install-timeline b,.privacy-panel h2,.legal-link-card b { color:var(--text); }
+    .feature p,.detail-card p,.install-copy p,.install-timeline p,.privacy-panel p,.legal-link-card small,.faq-item p { color:var(--muted); }
+    .ico,.detail-icon { filter:saturate(.9); }
+    .screenshot-gallery,.details-section,.install-section,.privacy-panel,.legal-links,.faq-section { margin-top:72px; }
+    .section-heading h2,.install-copy h2 { color:var(--text);letter-spacing:-1.1px; }
+    .section-heading h2 span,.install-copy h2 span { color:#a995ff; }
+    .section-heading p { color:var(--muted); }
+    .app-carousel { border:1px solid var(--line);border-radius:25px;background:rgba(16,19,39,.78);box-shadow:var(--shadow); }
+    .carousel-viewport { border-radius:20px; }
+    .carousel-slide figcaption { background:linear-gradient(180deg,rgba(11,13,28,.0),rgba(11,13,28,.97)); }
+    .carousel-slide figcaption span { color:#c4b5fd; }
+    .carousel-slide figcaption b { color:#fff; }
+    .carousel-slide figcaption small { color:#c0c1d8; }
+    .carousel-arrow,.carousel-dot { border-color:var(--line);background:rgba(24,27,52,.88);color:#fff; }
+    .carousel-dot.is-active { background:#9b7cf6;border-color:#9b7cf6; }
+    .carousel-hint { color:var(--muted); }
+    .detail-card { border-radius:21px;padding:24px; }
+    .detail-card:hover,.legal-link-card:hover { border-color:rgba(196,181,253,.42);transform:translateY(-3px); }
+    .detail-number { color:#c4b5fd; }
+    .install-section { border-radius:25px;padding:clamp(24px,4vw,38px); }
+    .install-timeline li>span { background:linear-gradient(135deg,#9b7cf6,#704fe0);box-shadow:0 8px 20px rgba(112,79,224,.25); }
+    .privacy-panel { border-radius:21px; }
+    .privacy-symbol { color:#c4b5fd; }
+    .legal-link-card { border-radius:17px; }
+    .legal-link-card>span { color:#c4b5fd;background:rgba(139,92,246,.13); }
+    .faq-item { border-radius:16px; }
+    .faq-item summary { color:#f1efff; }
+    .faq-item[open] { border-color:rgba(196,181,253,.38); }
+    footer { color:#9295b4;border-top:1px solid rgba(167,139,250,.13);margin-top:50px; }
+    footer a,.contact-email { color:#c4b5fd; }
+    .install-overlay { background:rgba(4,6,17,.76);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px); }
+    .install-dialog { background:linear-gradient(155deg,#1a1d36,#111427);border:1px solid var(--line);box-shadow:0 28px 90px rgba(0,0,0,.58);border-radius:26px; }
+    .install-dialog-tag { color:#c4b5fd; }
+    .install-dialog h2 { color:var(--text); }
+    .install-dialog-copy,.install-dialog-note { color:var(--muted); }
+    .install-benefits span { color:#e4e1ff; }
+    .install-benefits b { color:#c4b5fd; }
+    .install-close,.install-later { color:#c6c7df; }
+    @media(max-width:760px) {
+      .top { top:7px;margin:6px auto 16px;padding:10px 12px; }
+      .top-nav { gap:2px; }
+      .top-nav a { padding:8px 8px;font-size:11px; }
+      .showcase { min-height:auto;margin-bottom:34px;padding:30px 18px 12px; }
+      .showcase-inner { min-height:0;grid-template-columns:1fr;gap:0; }
+      .showcase-copy { padding:8px 0 0;text-align:center; }
+      .showcase-brand,.showcase-points { justify-content:center; }
+      .showcase-copy p { margin-left:auto;margin-right:auto; }
+      .device-stage { min-height:330px;width:min(100%,430px);margin:10px auto 0;transform:scale(.9);transform-origin:top center; }
+      .screenshot-gallery,.details-section,.install-section,.privacy-panel,.legal-links,.faq-section { margin-top:54px; }
+      .feature { min-height:100px; }
+    }
+    @media(max-width:560px) {
+      body { padding:12px; }
+      .top { flex-wrap:wrap;gap:8px; }
+      .top-nav { width:100%;justify-content:space-between;overflow-x:auto; }
+      .top-nav a { white-space:nowrap; }
+      .showcase { margin-left:-12px;margin-right:-12px;padding:26px 14px 0; }
+      .showcase-brand { font-size:26px; }
+      .showcase-copy h2 { font-size:36px; }
+      .showcase-points { gap:6px; }
+      .showcase-points span { font-size:10px;padding:7px 9px; }
+      .device-stage { min-height:285px;transform:scale(.78);margin-bottom:-55px; }
+      h1 { font-size:clamp(31px,9vw,42px); }
+      .features { margin-top:30px; }
+      .feature { padding:16px; }
+      .app-carousel { padding:10px; }
+      .install-section { gap:22px; }
+      .privacy-panel { align-items:flex-start; }
+    }
+    @media(max-width:380px) {
+      .top-nav a { font-size:10px;padding:7px 6px; }
+      .showcase-brand { font-size:23px; }
+      .showcase-copy h2 { font-size:32px; }
+      .device-stage { transform:scale(.69);margin-bottom:-85px; }
+    }
+    @media(prefers-reduced-motion:reduce) {
+      html { scroll-behavior:auto; }
+      *,*::before,*::after { animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important; }
+    }
+
+
+    /* Mobile header refinement: keep navigation in normal flow and fully opaque */
+    @media(max-width:760px) {
+      .top {
+        position:relative;
+        top:auto;
+        display:flex;
+        flex-direction:column;
+        align-items:stretch;
+        gap:12px;
+        margin:8px auto 22px;
+        padding:14px;
+        background:rgba(13,16,34,.98);
+        -webkit-backdrop-filter:none;
+        backdrop-filter:none;
+        box-shadow:0 14px 34px rgba(0,0,0,.32),inset 0 1px rgba(255,255,255,.04);
+        isolation:isolate;
+      }
+      .top-brand { display:flex;align-items:center;min-height:48px; }
+      .top-nav {
+        display:grid;
+        grid-template-columns:repeat(4,minmax(0,1fr));
+        align-items:center;
+        justify-content:stretch;
+        gap:5px;
+        width:100%;
+        min-width:0;
+        overflow:visible;
+        padding-top:9px;
+        border-top:1px solid rgba(167,139,250,.15);
+      }
+      .top-nav a {
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        min-width:0;
+        min-height:38px;
+        padding:7px 3px;
+        border-radius:10px;
+        text-align:center;
+        white-space:nowrap;
+        font-size:clamp(10px,2.7vw,12px);
+      }
+      .showcase {
+        position:relative;
+        z-index:0;
+        margin-top:0;
+        padding-top:28px;
+      }
+    }
+    @media(max-width:380px) {
+      .top { padding:12px; }
+      .top-brand .brand { font-size:14px; }
+      .top-nav { gap:2px; }
+      .top-nav a { font-size:10px;padding-inline:1px; }
+    }
+
+
+    /* Performance and icon polish */
+    .feature-icon {
+      display:grid;
+      place-items:center;
+      flex:0 0 48px;
+      width:48px;
+      height:48px;
+      border:1px solid rgba(120,170,255,.25);
+      border-radius:15px;
+      color:#a995ff;
+      background:linear-gradient(145deg,rgba(124,92,231,.17),rgba(50,105,190,.12));
+      box-shadow:inset 0 1px rgba(255,255,255,.06),0 8px 20px rgba(0,0,0,.16);
+    }
+    .feature-icon svg {
+      width:25px;
+      height:25px;
+      stroke:currentColor;
+      stroke-width:1.8;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+    .feature { content-visibility:auto;contain-intrinsic-size:110px; }
+    .showcase,.feature,.detail-card,.app-carousel { -webkit-backface-visibility:hidden; }
+    @media(max-width:760px) {
+      body { background-attachment:scroll; }
+      body::before { position:absolute; }
+      .device-one,.device-two { animation-duration:9s; }
+      .feature { content-visibility:visible; }
+    }
+    @media(prefers-reduced-motion:reduce) {
+      .device-one,.device-two,.app-icon { animation:none!important; }
+      .btn,.feature,.detail-card,.legal-link-card { transition:none!important; }
+    }
+
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a class="top-brand" href="./download.html" aria-label="ZSPM Community — strona instalacji">
+        <img src="https://raw.githubusercontent.com/tymur25112011-dev/Zspmapp/main/public/zspm-community-icon-192.png" referrerpolicy="no-referrer" loading="eager" decoding="async" alt="" width="42" height="42">
+        <span class="brand">ZSPM Community<small>Społeczność uczniów</small></span>
+      </a>
+      <nav class="top-nav" aria-label="Nawigacja strony">
+        <a href="#mozliwosci">Możliwości</a>
+        <a href="#instalacja">Instalacja</a>
+        <a href="#pytania">FAQ</a><a href="#dokumenty">Dokumenty</a>
+      </nav>
+    </header>
+
+    <section class="showcase" aria-label="Poznaj ZSPM Community">
+      <div class="showcase-inner">
+        <div class="showcase-copy">
+          <div class="showcase-brand"><img src="https://raw.githubusercontent.com/tymur25112011-dev/Zspmapp/main/public/zspm-community-icon-192.png" referrerpolicy="no-referrer" loading="eager" decoding="async" alt=""><div>ZSPM <span>Community</span></div></div>
+          <div class="showcase-tag">Twoja szkoła. Twoja społeczność.</div>
+          <h2>Więcej niż<br><span>szkolna aplikacja.</span></h2>
+          <p>Poznaj uczniów, rozmawiaj, dziel się pomysłami i bądź na bieżąco z tym, co dzieje się w naszej społeczności.</p>
+          <div class="showcase-points"><span>✦ Poznaj ludzi</span><span>✦ Rozmawiaj</span><span>✦ Dziel się pomysłami</span></div>
+        </div>
+        <div class="device-stage" aria-hidden="true">
+          <div class="device device-one">
+            <div class="screen screen-photo"><img src="https://raw.githubusercontent.com/tymur25112011-dev/Zspmapp/main/photos/Screenshot_20261121-184052.Chrome.png" alt="Zrzut ekranu ZSPM Community — widok aplikacji" loading="eager" decoding="async"></div>
+          </div>
+          <div class="device device-two">
+            <div class="screen screen-photo"><img src="https://raw.githubusercontent.com/tymur25112011-dev/Zspmapp/main/photos/Screenshot_20261121-184117.Chrome.png" alt="Zrzut ekranu ZSPM Community — kolejny widok aplikacji" loading="eager" decoding="async"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <main>
+      <img class="app-icon" src="https://raw.githubusercontent.com/tymur25112011-dev/Zspmapp/main/public/zspm-community-icon-192.png" referrerpolicy="no-referrer" loading="eager" decoding="async" alt="Ikona ZSPM Community" width="104" height="104">
+      <div class="eyebrow"><span>✦</span> Aplikacja internetowa PWA</div>
+      <h1>Twoja społeczność.<br><span>Zawsze pod ręką.</span></h1>
+      <p class="lead">Poznaj ZSPM Community — niezależną społeczność uczniowską. Strona informacyjna działa w zwykłej przeglądarce, a aplikację możesz otworzyć osobno.</p>
+      <div class="actions">
+        <a class="btn primary" href="https://tymur25112011-dev.github.io/Zspmapp/" target="_blank" rel="noopener noreferrer">Otwórz ZSPM Community <span aria-hidden="true">↗</span></a>
+        <a class="btn secondary" href="./">Otwórz aplikację <span aria-hidden="true">↗</span></a>
+      </div>
+      <p class="hint">To jest niezależna strona informacyjna. Aplikację otworzysz osobno w nowej karcie przeglądarki.</p>
+      <section class="features" aria-label="Korzyści">
+        <article class="feature">
+          <span class="ico feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="2.75" width="14" height="18.5" rx="3"/><path d="M9 6h6M10 18h4M12 9v5m-2-2 2 2 2-2"/></svg></span>
+          <div><b>Jak zwykła aplikacja</b><p>Ikona na ekranie głównym i osobne okno bez paska przeglądarki.</p></div>
+        </article>
+        <article class="feature">
+          <span class="ico feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M13.2 2.8 5.7 13h5.1l-.8 8.2L18.3 10h-5.2l.1-7.2Z"/></svg></span>
+          <div><b>Szybki dostęp</b><p>Uruchamiaj społeczność jednym dotknięciem.</p></div>
+        </article>
+        <article class="feature">
+          <span class="ico feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3.5h7l4 4v13H7a2 2 0 0 1-2-2v-13a2 2 0 0 1 2-2Z"/><path d="M14 3.8v4h4M8.5 13h7M8.5 16.5h5M3 7v12"/></svg></span>
+          <div><b>Bez APK</b><p>Instalacja bez pobierania instalatora i bez sklepu z aplikacjami.</p></div>
+        </article>
+      </section>
+
+      <section class="screenshot-gallery" aria-label="Jak wygląda aplikacja">
+        <div class="section-heading"><span class="section-kicker">ZOBACZ APLIKACJĘ</span><h2>Jak wygląda <span>aplikacja?</span></h2><p>Poznaj prawdziwe widoki ZSPM Community. Przeglądaj wybrane ekrany aplikacji i poznaj jej możliwości.</p></div>
+        <div class="app-carousel" id="appCarousel" aria-roledescription="karuzela" aria-label="Podgląd ekranów aplikacji">
+          <div class="carousel-viewport">
+            <figure class="carousel-slide is-active" aria-hidden="false"><img src="https://raw.githubusercontent.com/tymur25112011-dev/Zspmapp/main/photos/Screenshot_20261121-184052.Chrome.png" alt="Ekran aplikacji ZSPM Community — widok 1" loading="lazy" decoding="async"><figcaption><span>01 / 08</span><b>Odkryj społeczność</b><small>Wszystko, co ważne dla szkolnej społeczności, w jednym miejscu.</small></figcaption></figure>
+            <figure class="carousel-slide" aria-hidden="true"><img src="https://raw.githubusercontent.com/tymur25112011-dev/Zspmapp/main/photos/Screenshot_20261121-184117.Chrome.png" alt="Ekran aplikacji ZSPM Community — widok 2" loading="lazy" decoding="async"><figcaption><span>02 / 08</span><b>Twój profil</b><small>Pokaż innym swoje zainteresowania i poznawaj uczniów.</small></figcaption></figure>
+            <figure class="carousel-slide" aria-hidden="true"><img src="https://raw.githubusercontent.com/tymur25112011-dev/Zspmapp/main/photos/Screenshot_20261121-184135.Chrome.png" alt="Ekran aplikacji ZSPM Community — widok 3" loading="lazy" decoding="async"><figcaption><span>03 / 08</span><b>Znajdź swoją społeczność</b><small>Przeglądaj profile i odkrywaj nowe znajomości.</small></figcaption></figure>
+            <figure class="carousel-slide" aria-hidden="true"><img src="https://raw.githubusercontent.com/tymur25112011-dev/Zspmapp/main/photos/Screenshot_20261121-184147.Chrome.png" alt="Ekran aplikacji ZSPM Community — widok 4" loading="lazy" decoding="async"><figcaption><span>04 / 08</span><b>Rozmawiaj</b><small>Kontaktuj się z innymi użytkownikami w aplikacji.</small></figcaption></figure>
+            <figure class="carousel-slide" aria-hidden="true"><img src="https://raw.githubusercontent.com/tymur25112011-dev/Zspmapp/main/photos/Screenshot_20261121-184211.Chrome.png" alt="Ekran aplikacji ZSPM Community — widok 5" loading="lazy" decoding="async"><figcaption><span>05 / 08</span><b>Bądź na bieżąco</b><small>Sprawdzaj, co dzieje się w szkolnej społeczności.</small></figcaption></figure>
+            <figure class="carousel-slide" aria-hidden="true"><img src="https://raw.githubusercontent.com/tymur25112011-dev/Zspmapp/main/photos/Screenshot_20261121-184237.Chrome.png" alt="Ekran aplikacji ZSPM Community — widok 6" loading="lazy" decoding="async"><figcaption><span>06 / 08</span><b>Dziel się pomysłami</b><small>Dodawaj inspiracje i angażuj innych.</small></figcaption></figure>
+            <figure class="carousel-slide" aria-hidden="true"><img src="https://raw.githubusercontent.com/tymur25112011-dev/Zspmapp/main/photos/Screenshot_20261121-184249.Chrome.png" alt="Ekran aplikacji ZSPM Community — widok 7" loading="lazy" decoding="async"><figcaption><span>07 / 08</span><b>Twórz razem</b><small>Współtwórz aktywną i przyjazną społeczność.</small></figcaption></figure>
+            <figure class="carousel-slide" aria-hidden="true"><img src="https://raw.githubusercontent.com/tymur25112011-dev/Zspmapp/main/photos/Screenshot_20261121-184313.Chrome.png" alt="Ekran aplikacji ZSPM Community — widok 8" loading="lazy" decoding="async"><figcaption><span>08 / 08</span><b>Odkrywaj możliwości</b><small>Wygodny dostęp do szkolnych funkcji w jednym miejscu.</small></figcaption></figure>
+            <button class="carousel-arrow carousel-prev" type="button" aria-label="Poprzedni ekran">‹</button>
+            <button class="carousel-arrow carousel-next" type="button" aria-label="Następny ekran">›</button>
+          </div>
+          <div class="carousel-controls"><div class="carousel-dots" role="group" aria-label="Wybierz ekran">
+            <button class="carousel-dot is-active" type="button" aria-label="Ekran 1" aria-current="true"></button><button class="carousel-dot" type="button" aria-label="Ekran 2"></button><button class="carousel-dot" type="button" aria-label="Ekran 3"></button><button class="carousel-dot" type="button" aria-label="Ekran 4"></button><button class="carousel-dot" type="button" aria-label="Ekran 5"></button><button class="carousel-dot" type="button" aria-label="Ekran 6"></button><button class="carousel-dot" type="button" aria-label="Ekran 7"></button><button class="carousel-dot" type="button" aria-label="Ekran 8"></button>
+          </div><span class="carousel-hint">Automatyczna prezentacja · co 5 sekund</span></div>
+        </div>
+      </section>
+      <section class="details-section" id="mozliwosci">
+        <div class="section-heading">
+          <span class="section-kicker">W TWOIM ZASIĘGU</span>
+          <h2>Jedna przestrzeń.<br><span>Wiele możliwości.</span></h2>
+          <p>ZSPM Community pomaga być bliżej szkolnej społeczności — niezależnie od tego, czy chcesz kogoś poznać, porozmawiać, czy uporządkować codzienne sprawy.</p>
+        </div>
+        <div class="detail-grid">
+          <article class="detail-card">
+            <span class="detail-icon">♙</span>
+            <div class="detail-number">01 / SPOŁECZNOŚĆ</div>
+            <h3>Poznaj innych uczniów</h3>
+            <p>Przeglądaj profile, odkrywaj wspólne zainteresowania i przedstaw się społeczności na własnych zasadach.</p>
+          </article>
+          <article class="detail-card">
+            <span class="detail-icon">✉</span>
+            <div class="detail-number">02 / ROZMOWY</div>
+            <h3>Bądź w kontakcie</h3>
+            <p>Rozmawiaj z innymi użytkownikami i wracaj do swoich konwersacji w jednym, wygodnym miejscu.</p>
+          </article>
+          <article class="detail-card">
+            <span class="detail-icon">✦</span>
+            <div class="detail-number">03 / POMYSŁY</div>
+            <h3>Dziel się tym, co tworzysz</h3>
+            <p>Wymieniaj się inspiracjami, zadawaj pytania i angażuj się w życie szkolnej społeczności.</p>
+          </article>
+          <article class="detail-card">
+            <span class="detail-icon">▦</span>
+            <div class="detail-number">04 / ORGANIZACJA</div>
+            <h3>Miej sprawy pod ręką</h3>
+            <p>Korzystaj z dostępnych szkolnych informacji i narzędzi organizacyjnych, gdy są udostępnione na platformie.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="install-section" id="instalacja">
+        <div class="install-copy">
+          <span class="section-kicker">PROSTO I WYGODNIE</span>
+          <h2>Gotowe w kilku<br><span>prostych krokach.</span></h2>
+          <p>To aplikacja PWA — działa przez przeglądarkę, a na zgodnym urządzeniu możesz dodać ją do ekranu głównego. Nie musisz pobierać pliku APK.</p>
+        </div>
+        <ol class="install-timeline">
+          <li><span>1</span><div><b>Otwórz stronę w przeglądarce</b><p>Najlepiej użyj aktualnej wersji Chrome na Androidzie lub Safari na iPhonie.</p></div></li>
+          <li><span>2</span><div><b>Wybierz „Zainstaluj aplikację”</b><p>Jeśli przeglądarka pokaże przycisk instalacji, skorzystaj z niego. W innym przypadku otwórz menu i wybierz dodanie do ekranu głównego.</p></div></li>
+          <li><span>3</span><div><b>Uruchamiaj z ekranu głównego</b><p>Po dodaniu skrótu otworzysz ZSPM Community jak osobną aplikację.</p></div></li>
+        </ol>
+      </section>
+
+      <section class="privacy-panel">
+        <span class="privacy-symbol">◇</span>
+        <div><h2>Twoja prywatność ma znaczenie</h2><p>Używaj pseudonimu, udostępniaj tylko informacje, które chcesz pokazać innym, i nie publikuj danych takich jak adres, numer telefonu czy hasła. ZSPM Community jest niezależnym projektem społecznościowym, a nie oficjalnym kanałem komunikacji szkoły.</p></div>
+      </section>
+
+      <section class="legal-links" id="dokumenty">
+        <div class="section-heading"><span class="section-kicker">JASNE ZASADY</span><h2>Informacje prawne i bezpieczeństwo</h2><p>Przeczytaj, jak działa niezależny projekt, jakie zasady obowiązują w społeczności i jak chronimy prywatność użytkowników.</p></div>
+        <div class="legal-link-grid">
+          <a class="legal-link-card" href="https://tymur25112011-dev.github.io/Zspmapp/nota-prawna.html"><span>§</span><div><b>Nota prawna</b><small>Charakter projektu i zastrzeżenia</small></div><i>↗</i></a>
+          <a class="legal-link-card" href="https://tymur25112011-dev.github.io/Zspmapp/polityka-prywatnosci.html"><span>◇</span><div><b>Polityka prywatności</b><small>Dane, konta i prawa użytkowników</small></div><i>↗</i></a>
+          <a class="legal-link-card" href="https://tymur25112011-dev.github.io/Zspmapp/polityka-bezpieczenstwa.html"><span>盾</span><div><b>Polityka bezpieczeństwa</b><small>Zasady bezpiecznego korzystania</small></div><i>↗</i></a>
+        </div>
+      </section>
+
+      <section class="faq-section" id="pytania">
+        <div class="section-heading">
+          <span class="section-kicker">MASZ PYTANIA?</span>
+          <h2>Najważniejsze informacje</h2>
+        </div>
+        <details class="faq-item"><summary>Czy muszę pobierać plik APK?</summary><p>Nie. ZSPM Community jest aplikacją internetową PWA. Możesz korzystać z niej w przeglądarce i — jeśli urządzenie obsługuje instalację — dodać ją do ekranu głównego.</p></details>
+        <details class="faq-item"><summary>Czy instalacja jest płatna?</summary><p>Nie. Dodanie aplikacji do ekranu głównego nie wymaga zakupu w sklepie z aplikacjami.</p></details>
+        <details class="faq-item"><summary>Co zrobić, jeśli nie widzę przycisku instalacji?</summary><p>Otwórz menu przeglądarki i sprawdź, czy dostępna jest opcja „Zainstaluj aplikację” lub „Dodaj do ekranu głównego”. Możesz też po prostu korzystać ze strony przez przeglądarkę.</p></details>
+        <details class="faq-item"><summary>Czy mogę korzystać z serwisu bez instalowania?</summary><p>Tak. Wybierz „Otwórz aplikację” — instalacja jest opcjonalna.</p></details>
+        <details class="faq-item"><summary>Czy ZSPM Community jest oficjalną aplikacją szkoły?</summary><p>Nie. To niezależny projekt uczniowski, niepowiązany ze szkołą ani jej dyrekcją. Szczegóły znajdziesz w <a href="https://tymur25112011-dev.github.io/Zspmapp/nota-prawna.html">Nocie prawnej</a>.</p></details>
+        <details class="faq-item"><summary>Gdzie znajdę zasady prywatności i bezpieczeństwa?</summary><p>W dokumentach: <a href="https://tymur25112011-dev.github.io/Zspmapp/polityka-prywatnosci.html">Polityka prywatności</a> oraz <a href="https://tymur25112011-dev.github.io/Zspmapp/polityka-bezpieczenstwa.html">Polityka bezpieczeństwa</a>.</p></details>
+      </section>
+    </main>
+    <footer>ZSPM Community · Nieoficjalny projekt społecznościowy · Kontakt: <a class="contact-email" href="mailto:zspmcommunity.support@gmail.com">zspmcommunity.support@gmail.com</a><br><a href="https://tymur25112011-dev.github.io/Zspmapp/nota-prawna.html">Nota prawna</a> · <a href="https://tymur25112011-dev.github.io/Zspmapp/polityka-prywatnosci.html">Prywatność</a> · <a href="https://tymur25112011-dev.github.io/Zspmapp/polityka-bezpieczenstwa.html">Bezpieczeństwo</a></footer>
+  </div>
+
+  <script>
+
+
+    // Screenshot carousel: automatic rotation, arrows, dots and swipe.
+    (() => {
+      const root = document.getElementById("appCarousel");
+      if (!root) return;
+      const slides = [...root.querySelectorAll(".carousel-slide")];
+      const dots = [...root.querySelectorAll(".carousel-dot")];
+      const previous = root.querySelector(".carousel-prev");
+      const next = root.querySelector(".carousel-next");
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      let current = 0;
+      let rotation = null;
+      let touchStartX = 0;
+      let isInView = true;
+      let isHovered = false;
+      let isFocused = false;
+      const show = (index) => {
+        current = (index + slides.length) % slides.length;
+        slides.forEach((slide, i) => {
+          const active = i === current;
+          slide.classList.toggle("is-active", active);
+          slide.setAttribute("aria-hidden", String(!active));
+        });
+        dots.forEach((dot, i) => {
+          const active = i === current;
+          dot.classList.toggle("is-active", active);
+          if (active) dot.setAttribute("aria-current", "true");
+          else dot.removeAttribute("aria-current");
+        });
+      };
+      const stop = () => { if (rotation) window.clearInterval(rotation); rotation = null; };
+      const start = () => {
+        stop();
+        if (!reducedMotion && !document.hidden && isInView && !isHovered && !isFocused && slides.length > 1) {
+          rotation = window.setInterval(() => show(current + 1), 5000);
+        }
+      };
+      previous.addEventListener("click", () => { show(current - 1); start(); });
+      next.addEventListener("click", () => { show(current + 1); start(); });
+      dots.forEach((dot, i) => dot.addEventListener("click", () => { show(i); start(); }));
+      root.addEventListener("mouseenter", () => { isHovered = true; stop(); });
+      root.addEventListener("mouseleave", () => { isHovered = false; start(); });
+      root.addEventListener("focusin", () => { isFocused = true; stop(); });
+      root.addEventListener("focusout", event => {
+        if (!root.contains(event.relatedTarget)) { isFocused = false; start(); }
+      });
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(entries => {
+          isInView = entries[0].isIntersecting;
+          if (isInView) start(); else stop();
+        }, {threshold:0.12});
+        observer.observe(root);
+      }
+      root.addEventListener("touchstart", event => { touchStartX = event.changedTouches[0].clientX; }, {passive:true});
+      root.addEventListener("touchend", event => {
+        const delta = event.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(delta) > 45) { show(current + (delta < 0 ? 1 : -1)); start(); }
+      }, {passive:true});
+      document.addEventListener("visibilitychange", () => document.hidden ? stop() : start());
+      show(0);
+      start();
+    })();
+
+  </script>
+</body>
+</html>
